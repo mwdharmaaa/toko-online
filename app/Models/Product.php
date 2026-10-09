@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 namespace App\Models;
 
@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Builders\ProductBuilder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
 
@@ -37,6 +38,11 @@ class Product extends Model
             'is_active' => 'boolean',
             'specifications' => 'array',
         ];
+    }
+
+    public function newEloquentBuilder($query): ProductBuilder
+    {
+        return new ProductBuilder($query);
     }
 
     protected static function booted(): void
@@ -114,3 +120,4 @@ class Product extends Model
         );
     }
 }
+
