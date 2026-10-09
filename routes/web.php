@@ -24,6 +24,7 @@ Route::post('/admin/login', [AuthController::class, 'login'])->name('admin.login
 
 // Protected Admin Panel Routes
 Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', fn () => redirect()->route('admin.dashboard'));
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
