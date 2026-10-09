@@ -1,58 +1,95 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Mono Archive - Minimalist Monochrome Online Store
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A high-craft, production-grade e-commerce storefront and content management system engineered with Laravel 11, SQLite, Native Blade templates, Pure CSS (no framework), and Vanilla JavaScript (no framework). Designed with a strict monochrome visual palette: pure white background and razor-sharp black accents.
 
-## About Laravel
+## Architecture & Technology Stack
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **Backend**: Laravel 11 (PHP 8.3+) following Laravel best practices, Form Requests, eager loading, and Semantic Atomic Architecture.
+- **Database**: SQLite (`database/database.sqlite`), lightweight and zero-configuration.
+- **Frontend Views**: Native Laravel Blade components (`resources/views`).
+- **Styling**: Pure CSS (`public/css/style.css`, `public/css/admin.css`) with zero framework dependencies (No Tailwind, No Bootstrap).
+- **Interactivity**: Vanilla JavaScript (`public/js/app.js`, `public/js/admin.js`) with zero external libraries.
+- **Visual Assets**: Procedural SVG vector artwork for products and journal essays.
+- **Design Philosophy**: Strict black and white palette (`#ffffff` background, `#09090b` accents), linear typography hierarchy, zero emojis, and zero em dashes.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Core Features
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 1. Storefront Landing Page (`/`)
+- **Welcome Greeting Section**: Prominent store statement and operational value metrics.
+- **Curated Collections**: Featured items and latest catalog listings with category tags.
+- **Direct Catalog Navigation**: Instant category tabs and search filters.
+- **Editorial Journal Preview**: Highlights from the store blog.
 
-## Learning Laravel
+### 2. Product Detail Page (`/products/{slug}`)
+- High-resolution product showcase and structured technical specifications table (Material, Dimensions, Capacity, Warranty).
+- **Interactive WhatsApp Order Builder**:
+  - Real-time quantity stepper (+ and -) and optional customer order notes.
+  - Live message preview box compiling store name, SKU, price, quantity, subtotal, and notes.
+  - Direct "Pesan via WhatsApp Sekarang" button pointing to admin's configured WhatsApp number.
+  - "Salin Format Pesan" clipboard button with instant toast notification.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 3. Administrative Control Panel (`/admin`)
+- **Secure Authentication**: Dedicated admin guard and session handling (`admin@monoarchive.id` / `admin12345`).
+- **Operational Dashboard**: Real-time stats (Total Products, Low Stock Alerts, Categories, Blog Posts).
+- **Product Management (`/admin/products`)**: Full CRUD with search, category filtering, file image uploads, URL fallback, and multiline specification parser.
+- **Category Management (`/admin/categories`)**: Full CRUD with active status controls.
+- **Blog Management (`/admin/blog`)**: Full CRUD for articles with reading time calculator and publication status.
+- **Store & WhatsApp Configuration (`/admin/settings`)**: Live configuration for store name, hero greeting, WhatsApp admin phone number, and customizable WhatsApp template with live sample tester.
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 4. Editorial Blog Section (`/blog`)
+- Minimalist publication archive for articles, care guides, and design essays.
+- Single post reading layout with estimated reading time, author metadata, and WhatsApp share buttons.
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+## Directory Structure
 
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
-
-```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+```text
+toko-online/
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   ├── Admin/            # Admin controllers (Auth, Dashboard, Product, Category, Blog, Setting)
+│   │   │   ├── BlogController.php
+│   │   │   ├── HomeController.php
+│   │   │   └── ProductController.php
+│   │   ├── Middleware/           # EnsureUserIsAdmin guard
+│   │   └── Requests/             # Form Requests & DTO validations
+│   └── Models/                   # Eloquent models (Product, Category, BlogPost, SiteSetting, User)
+├── database/
+│   ├── migrations/               # SQLite schema definitions
+│   └── seeders/                  # Production-grade seeders & procedural SVG generator
+├── public/
+│   ├── css/                      # Pure CSS design system (style.css, admin.css)
+│   ├── js/                       # Vanilla JS handlers (app.js, admin.js)
+│   └── images/                   # Monochrome vector assets
+├── resources/
+│   └── views/                    # Native Blade templates
+├── tests/
+│   └── Feature/                  # Automated test suite (StorefrontTest, AdminPanelTest)
+├── deploy.sh                     # Single-enter deployment script
+├── redeploy.sh                   # Zero-friction redeployment script
+└── runtest.sh                    # Automated test runner
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+## Quick Start (Single-Enter)
 
-## Contributing
+```bash
+# Clone the repository
+git clone https://github.com/mwdharmaaa/toko-online.git
+cd toko-online
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+# Execute deployment bundle
+./deploy.sh
 
-## Code of Conduct
+# Run test suite
+./runtest.sh
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+# Launch local development server
+php artisan serve
+```
 
-## Security Vulnerabilities
+### Default Credentials
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- **Storefront**: `http://127.0.0.1:8000`
+- **Admin Panel**: `http://127.0.0.1:8000/admin`
+- **Email**: `admin@monoarchive.id`
+- **Password**: `admin12345`

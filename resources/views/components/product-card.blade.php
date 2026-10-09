@@ -18,7 +18,7 @@
     </a>
 
     <div class="card-body">
-        <span class="card-category">{{ $product->category->name ?? 'Esensial' }}</span>
+        <span class="card-category">{{ $product->category->name ?? 'Esensial' }} &bull; {{ $product->sku }}</span>
         <h3 class="card-title">
             <a href="{{ route('products.show', $product->slug) }}">{{ $product->name }}</a>
         </h3>
