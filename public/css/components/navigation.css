@@ -1,0 +1,8 @@
+﻿/* Modular Navigation Bar Classes */
+.nav-monochrome-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  border-bottom: 1px solid #e4e4e7;
+}
