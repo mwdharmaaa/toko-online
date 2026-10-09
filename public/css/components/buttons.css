@@ -1,0 +1,18 @@
+﻿/* Modular Button Classes */
+.btn-monochrome {
+  background-color: var(--color-ink-deep, #09090b);
+  color: #ffffff;
+  padding: 10px 18px;
+  border-radius: 2px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  border: 1px solid var(--color-ink-deep, #09090b);
+  transition: opacity 0.15s ease;
+}
+
+.btn-monochrome:hover {
+  opacity: 0.9;
+}
