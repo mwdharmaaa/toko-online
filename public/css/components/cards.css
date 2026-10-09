@@ -1,0 +1,12 @@
+﻿/* Modular Card Layouts */
+.card-monochrome {
+  background: #ffffff;
+  border: 1px solid var(--border-line-subtle, #e4e4e7);
+  border-radius: 2px;
+  padding: 20px;
+  transition: border-color 0.15s ease;
+}
+
+.card-monochrome:hover {
+  border-color: var(--color-ink-deep, #09090b);
+}
