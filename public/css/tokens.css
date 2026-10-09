@@ -1,0 +1,12 @@
+﻿/* Design System Core Tokens */
+:root {
+  --color-canvas-pure: #ffffff;
+  --color-canvas-subtle: #f8f8fa;
+  --color-canvas-inset: #f1f1f4;
+  --color-ink-deep: #09090b;
+  --color-ink-muted: #52525b;
+  --color-ink-faint: #a1a1aa;
+  --border-line-subtle: #e4e4e7;
+  --border-line-accent: #09090b;
+  --font-mono-code: "SF Mono", Monaco, "Cascadia Code", Consolas, monospace;
+}
